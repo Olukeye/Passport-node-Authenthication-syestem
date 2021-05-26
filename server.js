@@ -8,7 +8,7 @@ const app = express();
 const db = require('./config/key').MongoURI;
 
 // Connect to Database
-mongoose.connect(db, {useNewUrlParser: true })
+mongoose.connect(db, { useNewUrlParser: true })
 .then(() => console.log('database is connected.'))
 .catch(err => console.log(err));
    
@@ -18,6 +18,8 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs')
 
 app.use(express.urlencoded({extended: false}));
+
+
 // routes
 app.use('/',  require('./routes/index'));
 app.use('/users',  require('./routes/users'));

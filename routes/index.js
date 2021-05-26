@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     res.render('welcomepage')
 });
 
-router.get('/regiseter', (req, res) => {
+router.get('/register', (req, res) => {
     res.render('register')
 });
 router.get('/login', (req, res) => {
