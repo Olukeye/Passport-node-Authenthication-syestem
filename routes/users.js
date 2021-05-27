@@ -16,17 +16,17 @@ router.post('/register', async(req, res) => {
     
     //    Check if all input fields are entered
     if(!name || !email || !password || !password2) {
-        errors.push({ msg: "Please all fields are required"});
+        errors.push({ message: "Please all fields are required"});
     }
 
     // check if password match
     if(password !== password2) {
-        errors.push({msg: "Password do not match!"});
+        errors.push({message: "Password do not match!"});
     }
 
     // check if length of password is < 6, else alert
     if(password.length < 6) {
-        errors.push({msg: "Password should be atleast 6 characters!"})
+        errors.push({message: "Password should be atleast 6 characters!"})
     }
 
     // re-render the registration form if error meets any of the above issues
