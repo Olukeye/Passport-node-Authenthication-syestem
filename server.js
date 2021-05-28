@@ -2,9 +2,13 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
+const passport = require('passport');
 const session = require('express-session');
 
 const app = express();
+
+// config passport
+require('./config/passport')(passport);
 
 // Config DB
 const db = require('./config/key').MongoURI;
@@ -29,6 +33,10 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// passprt
+app.use(passport.initialize());
+app.use(passport.session());
+
 // connect flash (this will flash a success or error message after sumission)
 app.use(flash());
 
@@ -36,6 +44,7 @@ app.use(flash());
 app.use(function(req, res, next) {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
     next();
 })  
 
