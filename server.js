@@ -1,9 +1,10 @@
-const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
+const express  = require('express');
 const mongoose = require('mongoose');
-const flash = require('connect-flash');
 const passport = require('passport');
-const session = require('express-session');
+const flash    = require('connect-flash');
+const session  = require('express-session');
+const expressLayouts = require('express-ejs-layouts');
+
 
 const app = express();
 
@@ -41,19 +42,17 @@ app.use(passport.session());
 app.use(flash());
 
 // Global variables
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     next();
 })  
 
-
 // routes
 app.use('/',  require('./routes/index'));
 app.use('/users',  require('./routes/users'));
 
-
-
+// PORT 
 const PORT = process.env.PORT || 2021;
 app.listen(PORT, console.log(`Passport server running on port ${PORT}`));
